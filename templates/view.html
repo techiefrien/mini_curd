@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>students record | list</title>
+</head>
+<body>
+    
+<h1>STUDENTS RECORD LIST</h1>
+<h4><p>{% with messages = get_flashed_messages()%}
+        {% if messages %}
+          {% for message in messages %}
+                   {{message}}
+          {% endfor %}
+        {% endif %}
+
+      {% endwith %}
+
+
+</p></h4>
+<table>
+
+<tr>
+<th>ID</th>
+<th>NAME</th>
+<th>AGE</th>
+<th>CITY</th>
+<th>EDIT</th>
+<th>DELETE</th>
+</tr>
+
+{% for datas in data %}
+<tr>
+<td>{{datas[0]}}</td>
+<td>{{datas[1]}}</td>
+<td>{{datas[2]}}</td>
+<td>{{datas[3]}}</td>
+<td><a href="{{url_for('update',id=datas[0])}}">edit</a></td>
+<td><a onclick="return confirm('do you really want to delete');" href="{{url_for('delete',id=datas[0])}}">delete</a></td>
+</tr>
+{% endfor %}
+</table>
+
+<a href="/"><button>home</button></a>
+
+
+</body>
+</html>
